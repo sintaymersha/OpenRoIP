@@ -7,7 +7,7 @@ PROJECT_NAME = "OpenRoIP"
 
 VERSION = "0.1.0"
 
-ENVIRONMENT = "development"
+ENVIRONMENT = "Development"
 
 
 # Network Configuration
