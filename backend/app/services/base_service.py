@@ -1,14 +1,22 @@
-"""
-Base Service Definition
-"""
+from abc import ABC, abstractmethod
+
+from .service_state import ServiceState
 
 
-class BaseService:
+class BaseService(ABC):
 
+    def __init__(self):
 
+        self.state = ServiceState.STOPPED
+
+    @abstractmethod
     def start(self):
-        raise NotImplementedError
+        pass
 
-
+    @abstractmethod
     def stop(self):
-        raise NotImplementedError
+        pass
+
+    def get_state(self):
+
+        return self.state

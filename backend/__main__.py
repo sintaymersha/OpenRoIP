@@ -4,8 +4,6 @@ from app.core.startup import initialize
 
 
 def main():
-    print("Starting OpenRoIP...")
-
     initialize()
 
     uvicorn.run(

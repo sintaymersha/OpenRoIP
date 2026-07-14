@@ -1,12 +1,14 @@
 from .settings import (
     PROJECT_NAME,
     VERSION,
-    ENVIRONMENT
+    ENVIRONMENT,
 )
 
-from app.services.service_manager import ServiceManager
-from app.services.system_service import SystemService
+from app.core.application import service_manager
 
+from app.services.system_service import SystemService
+from app.services.radio_service import RadioService
+from app.services.bridge_service import BridgeService
 
 
 def initialize():
@@ -17,13 +19,10 @@ def initialize():
     print(f"Environment: {ENVIRONMENT}")
     print("==============================")
 
+    service_manager.register("system", SystemService())
+    service_manager.register("radio", RadioService())
+    service_manager.register("bridge", BridgeService())
 
-    manager = ServiceManager()
-
-    manager.register(SystemService())
-
-
-    manager.start_all()
-
+    service_manager.start_all()
 
     print("Core services initialized")
