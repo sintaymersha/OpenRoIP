@@ -4,8 +4,8 @@ set -e
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT/backend"
 
-source .venv/bin/activate
+source ../.venv/bin/activate
 
-python -m backend
+uvicorn app.api.server:app --reload
