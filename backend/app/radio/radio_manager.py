@@ -1,7 +1,7 @@
 """
 OpenRoIP Radio Manager
 """
-
+from .virtual_radio import VirtualRadio
 from app.core.application import event_bus
 from app.events.event import Event
 from app.events.radio_events import RADIO_STATE_CHANGED
@@ -12,7 +12,14 @@ from .radio_state import RadioState
 class RadioManager:
 
     def __init__(self):
+
         self.state = RadioState()
+
+        self.devices = {
+            "Virtual Radio": VirtualRadio()
+        }
+
+        self.current_radio = None
 
     def _notify_state_changed(self):
         """
