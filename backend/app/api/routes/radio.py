@@ -21,7 +21,19 @@ def get_radio_service():
         )
 
     return radio_service
+def get_radio_discovery():
+    """
+    Retrieve the RadioDiscoveryService instance.
+    """
+    discovery = service_manager.get_service("radio_discovery")
 
+    if discovery is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Radio discovery service not available",
+        )
+
+    return discovery
 
 @router.get("/status")
 def status():
@@ -74,3 +86,9 @@ def rx_on():
 def rx_off():
     get_radio_service().set_receiving(False)
     return {"message": "Reception stopped"}
+
+@router.get("/devices")
+def devices():
+    return {
+        "devices": get_radio_discovery().discover()
+    }
