@@ -84,3 +84,8 @@ class RadioService(BaseService):
         Set receiving state.
         """
         self.radio.set_receiving(enabled)
+    def discover_serial_ports(self):
+        """
+        Return all detected serial ports.
+        """
+        return self.radio.discover_serial_ports()

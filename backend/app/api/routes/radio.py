@@ -92,3 +92,8 @@ def devices():
     return {
         "devices": get_radio_discovery().discover()
     }
+@router.get("/serial")
+def get_serial_ports():
+    return {
+        "ports": get_radio_service().discover_serial_ports()
+    }

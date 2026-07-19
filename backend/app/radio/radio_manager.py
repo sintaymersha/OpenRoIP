@@ -5,6 +5,7 @@ from .virtual_radio import VirtualRadio
 from app.core.application import event_bus
 from app.events.event import Event
 from app.events.radio_events import RADIO_STATE_CHANGED
+from app.radio.serial_discovery import SerialDiscovery
 
 from .radio_state import RadioState
 
@@ -149,3 +150,6 @@ class RadioManager:
         Return the radio status as a dictionary.
         """
         return self.state.to_dict()
+    def discover_serial_ports(self):
+        """ Return all detected serial ports."""
+        return SerialDiscovery.discover()
