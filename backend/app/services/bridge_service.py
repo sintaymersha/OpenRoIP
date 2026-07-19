@@ -77,7 +77,27 @@ class BridgeService(BaseService):
 
         return self.bridge.stop_bridge()
 
+    def connect(self):
 
+        return self.bridge.connect()
+
+
+
+    def disconnect(self):
+
+        return self.bridge.disconnect()
+
+
+
+    def ptt_on(self):
+
+        return self.bridge.ptt_on()
+
+
+
+    def ptt_off(self):
+
+        return self.bridge.ptt_off()
 
     def get_status(self):
 
