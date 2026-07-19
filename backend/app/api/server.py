@@ -5,7 +5,7 @@ from app.core.startup import initialize
 from app.api.routes.system import router as system_router
 from app.api.routes.radio import router as radio_router
 from app.api.routes.audio import router as audio_router   
-
+from app.api.routes.bridge import router as bridge_router
 
 app = FastAPI(
     title="OpenRoIP API",
@@ -21,7 +21,7 @@ def startup_event():
 app.include_router(system_router)
 app.include_router(radio_router)
 app.include_router(audio_router)      
-
+app.include_router(bridge_router)
 
 @app.get("/")
 def root():

@@ -1,5 +1,5 @@
 from app.radio.radio_interface import RadioInterface
-
+from app.audio.audio_frame import AudioFrame
 
 class VirtualRadio(RadioInterface):
 
@@ -91,6 +91,25 @@ class VirtualRadio(RadioInterface):
         self.ptt = False
         self.transmitting = False
 
-        return {
-            "status": "PTT OFF"
-        }
+    def receive_audio(self):
+        """
+        Simulate receiving audio from radio hardware.
+
+        In the real implementation this data will come from:
+        - SDR
+        - USB radio interface
+        - serial radio controller
+        - network radio device
+        """
+
+        if not self.connected:
+            return None
+
+        data = b"\x00" * 160
+
+        return AudioFrame(
+            data=data,
+            sample_rate=8000,
+            channels=1,
+            sample_width=2,
+        )
